@@ -1,11 +1,14 @@
 import React from 'react'
+import { Fragment } from 'react'
 //components
 import NavBar from './NavBar'
+import Banner from './Banner'
 const Home = () => {
   return (
-    <div>
+    <Fragment>
       <NavBar/>
-    </div>
+      <Banner/>
+    </Fragment>
   )
 }
 
