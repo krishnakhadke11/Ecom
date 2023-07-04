@@ -2,6 +2,7 @@ import React from 'react';
 import {AppBar, Toolbar, Box, Typography} from '@mui/material';
 import styled from '@emotion/styled';
 import Search from './Search';
+import CustomButton from './CustomButton';
 
 const BoxComponent = styled(Box)`
     margin-left : 12%;
@@ -18,6 +19,10 @@ const PlusImage = styled('img')({
     height : 10, 
     marginLeft : 4
 })
+
+const CustomButtonWrapper = styled(Box)`
+    margin : 0 5% 0 5%;
+`
 
 function Header() {
     const logoURL = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/flipkart-plus_8d85f4.png';
@@ -38,6 +43,9 @@ function Header() {
                     </Box>
                 </BoxComponent>
                 <Search/>
+                <CustomButtonWrapper>
+                    <CustomButton />
+                </CustomButtonWrapper>
             </Toolbar>
         </AppBar>
     </div>
