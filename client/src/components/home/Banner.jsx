@@ -26,7 +26,18 @@ const responsive = {
 
 const Banner = () => {
   return (
-    <Carousel responsive={responsive}> 
+    <Carousel 
+    swipeable={false}
+    draggable={false}
+    responsive={responsive} 
+    infinite={true}
+    autoPlay={true}
+    autoPlaySpeed={4000}  
+    slidesToSlide={1}
+    dotListClass="custom-dot-list-style"
+    itemClass="carousel-item-padding-40-px" 
+    containerClass="carousel-container"
+    > 
     {
         bannerData.map(data =>(
             <Image src={data.url} alt="" />
