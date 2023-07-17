@@ -21,7 +21,6 @@ export const userLogIn = async (req, res) => {
 export const userSignUp = async (req, res) => {
     try {
         let user = await User.findOne({ username: req.body.username });
-        
         if(user) {
             return res.status(401).json({ message: 'User already exist'});
         }
