@@ -31,8 +31,8 @@ export const userSignUp = async (req, res) => {
         
 
          user = await User.create({
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
+            fullname: req.body.fullname,
+            // lastname: req.body.lastname,
             username:req.body.username,
             email:req.body.email,
             password: secPass,
@@ -40,8 +40,8 @@ export const userSignUp = async (req, res) => {
         })
         
         const resData = {
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
+            fullname: req.body.fullname,
+            // lastname: req.body.lastname,
             username:req.body.username,
             email:req.body.email,
             password: secPass,
