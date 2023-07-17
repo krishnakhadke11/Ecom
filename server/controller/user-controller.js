@@ -5,12 +5,12 @@ export const userLogIn = async (req, res) => {
         const {username,password} = req.body;
         let user = await User.findOne({ username: username});
         if(!user){
-            return res.status(400).json({error:"Please enter correct credentials"})
+            return res.status(400).json({error:"Please enter correct username"})
         }
 
         let passCompare = await bcrypt.compare(password,user.password);
         if(!passCompare){
-            return res.status(400).json({error:"Please enter correct credentials"})
+            return res.status(400).json({error:"Please enter correct password"})
         }
         return res.status(200).json(`${username} login successfull`);
     } catch (error) {
@@ -46,7 +46,7 @@ export const userSignUp = async (req, res) => {
             // password: secPass,
             phone: req.body.phone
         }
-        res.status(200).json({ resData });
+        res.status(200).json( resData );
         
     } catch (error) {
         res.status(500).json({ message: error.message });

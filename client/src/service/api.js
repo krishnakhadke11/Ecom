@@ -10,3 +10,13 @@ export const authenticateSignup = async(data) => {
         console.log("error while authenticating signup : ", error);
     }
 }
+
+export const authenticateLogin = async(data) => {
+    try{
+        return await axios.post(`${URL}/login`, data);
+    }
+    catch(error){
+        console.log("error while authenticating login : ", error);
+        return error.response;
+    }
+}

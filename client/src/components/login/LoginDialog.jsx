@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 import { Box, Button, Dialog, TextField, Typography } from '@mui/material'
-import React, { useState } from 'react'
-import { authenticateSignup } from '../../service/api';
+import React, { useState, useContext } from 'react'
+import { authenticateSignup, authenticateLogin } from '../../service/api';
+import { DataContext } from '../../context/DataProvider';
 
 const Component = styled(Box)`
     height : 79vh;
@@ -53,6 +54,14 @@ const CreateAccount = styled(Typography)`
     cursor : pointer;
 `
 
+const Error = styled(Typography)`
+    color : #ff6161;
+    font-size : 10px;
+    line-height : 0;
+    margin-top : 10px;
+    font-weight : 600;
+`
+
 const accountInitialValues = {
     login : {
         view : 'login',
@@ -74,9 +83,18 @@ const signupInitialValues = {
     phone : ""
 }
 
+const loginInitialValues = {
+    username : "",
+    password : ""
+}
+
 function LoginDialog({open, setOpen}) {
     const [signup, setSignup] = useState(signupInitialValues);
-    const [account, toggleAccount] = useState(accountInitialValues.login);
+    const [loginaccount, toggleAccount] = useState(accountInitialValues.login);
+    const [login, setLogin] = useState(loginInitialValues)
+    const [error, setError] = useState(false);
+
+    const {setAccount} = useContext(DataContext)
 
     const handleClose = () => {
         setOpen(false);
@@ -91,10 +109,27 @@ function LoginDialog({open, setOpen}) {
         setSignup({ ...signup, [e.target.name] : e.target.value });
     }
 
+    const onValueChange = (e) => {
+        setLogin({...login, [e.target.name] : e.target.value})
+    }
+
+    const loginUser = async() => {
+        let response = await authenticateLogin(login);
+        console.log(response)
+        if(response.status === 200){
+            setAccount(login.username);
+            handleClose();
+        }
+        else{
+            setError(true);
+        }
+    }
+
     const signupUser = async() => {
         let response = await authenticateSignup(signup);
-        console.log(signup);
-        if(response) console.log(response);
+        if(!response) return;
+        handleClose();
+        setAccount(response.data.username);
     }    
 
   return (
@@ -102,15 +137,16 @@ function LoginDialog({open, setOpen}) {
         <Dialog open={open} onClose={handleClose} PaperProps={{ sx : { maxWidth : 'unset'}}}>
             <Component>
                 <Image>
-                    <Typography variant='h5'>{account.heading}</Typography>
-                    <Typography style={{ marginTop : 20 }}>{account.subHeading}</Typography>
+                    <Typography variant='h5'>{loginaccount.heading}</Typography>
+                    <Typography style={{ marginTop : 20 }}>{loginaccount.subHeading}</Typography>
                 </Image>
-                { account.view == 'login' ?
+                { loginaccount.view === 'login' ?
                     <Wrapper>
-                        <TextField variant='standard' label='Enter Email/Mobile Number'></TextField>
-                        <TextField variant='standard' label='Enter Password'></TextField>
+                        <TextField variant='standard' name='username' onChange={(e) => onValueChange(e)} label='Enter Username'></TextField>
+                        <TextField variant='standard' name='password' onChange={(e) => onValueChange(e)} label='Enter Password'></TextField>
+                        {error && <Error>Please enter valid username and password</Error>}
                         <Typography style={{fontSize: 12, color: '#878787'}}>By continuing, you agree to Flipkart's Terms of Use and Privacy Policy.</Typography>
-                        <LoginButton>Login</LoginButton>
+                        <LoginButton onClick={loginUser}>Login</LoginButton>
                         <Typography style={{ textAlign : 'center'}}>OR</Typography>
                         <RequestOTP>Request OTP</RequestOTP>
                         <CreateAccount onClick={toggleSignup}>New to Flipkart? Create an account</CreateAccount>
