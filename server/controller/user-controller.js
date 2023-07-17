@@ -43,10 +43,10 @@ export const userSignUp = async (req, res) => {
             // lastname: req.body.lastname,
             username:req.body.username,
             email:req.body.email,
-            password: secPass,
+            // password: secPass,
             phone: req.body.phone
         }
-        res.status(200).json({ mesage: resData });
+        res.status(200).json({ resData });
         
     } catch (error) {
         res.status(500).json({ message: error.message });
