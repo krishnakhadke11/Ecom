@@ -99,6 +99,7 @@ function LoginDialog({open, setOpen}) {
     const handleClose = () => {
         setOpen(false);
         toggleAccount(accountInitialValues.login);
+        setError(false);
     }
 
     const toggleSignup = () => {
