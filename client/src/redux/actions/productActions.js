@@ -5,7 +5,6 @@ const URL = "http://localhost:5000";
 export const getProducts = () => async(dispatch) => {
     try{
         let { data } = await axios.get(`${URL}/getProducts`)
-        console.log(data);
         dispatch({ type : actionTypes.GET_PRODUCTS_SUCCES, payload : data})
     }
     catch(error){
