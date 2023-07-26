@@ -17,7 +17,7 @@ const Image = styled('img')(({ theme }) => ({
     //     objectFit: 'cover',
     //     height: 120
     // }
-    '@media (max-width: 900px)': {
+    '@media (max-width: 992px)': {
         objectFit: 'cover',
         height: 120
       },

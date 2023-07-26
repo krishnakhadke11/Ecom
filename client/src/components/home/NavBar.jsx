@@ -3,11 +3,20 @@ import React from 'react'
 import { Box, Typography, styled } from '@mui/material';
 import { navData } from '../../constants/data';
 
-const Component = styled(Box)`
-  display : flex;
-  margin : 55px 130px 0 130px;
-  justify-content : space-between;
-`
+const Component = styled(Box)(({ theme }) => ({
+  display : 'flex',
+  margin : '55px 130px 0 130px',
+  justifyContent :'space-between',
+  overflow : 'hidden',
+  // overflow : 'overlay',
+  // [theme.breakpoints.down('md')] : {
+    //    margin : 0
+    // }
+    '@media (max-width: 1200px)': {
+      margin : 0
+    },
+}))
+
 const Container = styled(Box)`
   padding: 12px 8px;
   text-align: center;

@@ -7,18 +7,30 @@ const Component = styled(Box)`
     display : flex;
 `
 
-const LeftComponent = styled(Box)`
-    width : 83%;
-`
+const LeftComponent = styled(Box)(({theme}) => ({
+    width : '83%',
+    // [theme.breakpoints.down('md')] : {
+    //     width : '100%'
+    // }
+    '@media (max-width: 992px)': {
+        width : '100%'
+      },
+}))
 
-const RightComponent = styled(Box)`
-    background-color : #ffffff;
-    padding : 10px;
-    margin-top : 10px;
-    margin-left : 10px;
-    width : 17%;
-    text-align : center;
-`
+const RightComponent = styled(Box)(({theme}) => ({
+    background : '#ffffff',
+    padding : 5,
+    marginTop : 10,
+    marginLeft : 10,
+    width : '17%',
+    textAlign : 'center',
+    // [theme.breakpoints.down('md')] : {
+    //     display : 'none'
+    // }
+    '@media (max-width: 992px)': {
+        display : 'none'
+      },
+}))
 
 function MidSlide({ products, title, timer}) {
 
