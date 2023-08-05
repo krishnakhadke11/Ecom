@@ -4,9 +4,13 @@ import styled from '@emotion/styled';
 import Search from './Search';
 import CustomButton from './CustomButton';
 
-const BoxComponent = styled(Box)`
+import { Link } from 'react-router-dom';
+
+const BoxComponent = styled(Link)`
     margin-left : 12%;
     line-height : 0;
+    text-decoration: none;
+    color: inherit;
 `
 
 const SubHeading = styled(Typography)` 
@@ -32,7 +36,7 @@ function Header() {
     <div>
         <AppBar style={{background:"#2874f0", height:55}}>
             <Toolbar style={{minHeight:55}}>
-                <BoxComponent>
+                <BoxComponent to = '/'>
                     <img src={logoURL} alt='logo' style={{ width:75 }}/>
                     <Box style={{display : "flex"}}>
                         <SubHeading>
