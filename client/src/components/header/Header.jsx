@@ -57,7 +57,7 @@ function Header() {
         setopen(false);
     }
 
-    const list = () =>{
+    const list = () =>(
         <Box style = {{ width: 200 }} onClick={handleClose}>
             <List>
                 <ListItem button>
@@ -65,8 +65,7 @@ function Header() {
                 </ListItem>
             </List>
         </Box>
-    }
-
+    )
   return (
     <div>
         <AppBar style={{background:"#2874f0", height:55}}>
