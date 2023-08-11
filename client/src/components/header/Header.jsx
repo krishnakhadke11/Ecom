@@ -1,8 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
-import {AppBar, Toolbar, Box, Typography, IconButton, Drawer, List, ListItem} from '@mui/material';
+import {AppBar, Toolbar, Box, Typography, IconButton, Drawer, List, ListItem, styled} from '@mui/material';
 import { Menu } from '@mui/icons-material';
-import styled from '@emotion/styled';
 import Search from './Search';
 import CustomButton from './CustomButton';
 
@@ -27,20 +26,17 @@ const PlusImage = styled('img')({
 })
 
 const CustomButtonWrapper = styled(Box)(({ theme }) => ({
-    margin : '0 5% 0 auto',
-    // [theme.breakpoints.down('sm')]: {
-    //     display: 'none'
-    // }
-    '@media (max-width: 992px)': {
-        display : 'none'
-      },
+    margin : '0 5% 0 5%',
+    [theme.breakpoints.down('sm')]: {
+        display: 'none'
+    }
 }));
    
 const MenuButton = styled(IconButton)(({ theme }) => ({
     display: 'none',
-    '@media (max-width: 992px)': {
-        display : 'block'
-      },
+    [theme.breakpoints.down('sm')]: {
+        display: 'block'
+    }
 }))
 
 function Header() {

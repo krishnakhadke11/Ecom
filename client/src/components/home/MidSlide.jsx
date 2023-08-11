@@ -1,7 +1,6 @@
-import { Box } from '@mui/material';
+import { Box, styled } from '@mui/material';
 import React from 'react';
 import Slide from './Slide';
-import styled from '@emotion/styled';
 
 const Component = styled(Box)`
     display : flex;
@@ -9,12 +8,9 @@ const Component = styled(Box)`
 
 const LeftComponent = styled(Box)(({theme}) => ({
     width : '83%',
-    // [theme.breakpoints.down('md')] : {
-    //     width : '100%'
-    // }
-    '@media (max-width: 992px)': {
+    [theme.breakpoints.down('md')] : {
         width : '100%'
-      },
+    }
 }))
 
 const RightComponent = styled(Box)(({theme}) => ({
@@ -24,12 +20,9 @@ const RightComponent = styled(Box)(({theme}) => ({
     marginLeft : 10,
     width : '17%',
     textAlign : 'center',
-    // [theme.breakpoints.down('md')] : {
-    //     display : 'none'
-    // }
-    '@media (max-width: 992px)': {
+    [theme.breakpoints.down('md')] : {
         display : 'none'
-      },
+    }
 }))
 
 function MidSlide({ products, title, timer}) {

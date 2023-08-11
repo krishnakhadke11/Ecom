@@ -44,7 +44,7 @@ const adURL = 'https://rukminim1.flixcart.com/lockin/774/185/images/CCO__PP_2019
           <Typography>
             <Box component="span" style={{ fontSize: 28}}>₹{product.price.cost}</Box>&nbsp;&nbsp;&nbsp;
             <Box component="span" style={{ color: '#878787'}} ><strike>₹{product.price.mrp}</strike></Box>&nbsp;&nbsp;&nbsp;
-            <Box component="span" style={{ color: '#388E3C'}} >{product.price.discount}</Box>
+            <Box component="span" style={{ color: '#388E3C'}} >{product.price.discount} off</Box>
           </Typography>
           <Typography>Available offers</Typography>
           <Smalltext>
