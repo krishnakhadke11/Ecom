@@ -27,6 +27,6 @@ export const payUsingPaytm = async(data) => {
         return response.data;
     }
     catch(error){
-        console.log("error while calling paytm api ", error);
+        console.log("error while calling paytm api ", error); 
     }
 }
