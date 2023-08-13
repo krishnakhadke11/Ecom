@@ -76,7 +76,7 @@ class PaytmChecksum {
 	static getStringByParams(params) {
 		var data = {};
 		Object.keys(params).sort().forEach(function(key,value) {
-			console.log("In paytm folder",params[key])
+			// console.log("In paytm folder",params[key])
 			data[key] = (params[key] !== null && params[key].toLowerCase() !== "null") ? params[key] : "";
 		});
 		return Object.values(data).join('|');
