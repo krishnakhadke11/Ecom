@@ -8,7 +8,7 @@ import { addToCart } from '../../redux/actions/cartActions'
 import{ ShoppingCart as Cart,  FlashOn as Flash} from '@mui/icons-material';
 
 import { payUsingPaytm  } from '../../service/api';
-
+import {post} from '../../utils/paytm'
 const LeftContainer = styled(Box)(({ theme })=>({
   minWidth: '40%',
   padding: '40px 0 0 80px',
@@ -53,6 +53,7 @@ const ActionItem = ({ product }) => {
       action: 'https://securegw-stage.paytm.in/order/process', 
       params: response
     }
+    post(information)
   }
 
   return (

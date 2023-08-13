@@ -6,6 +6,7 @@ import https from 'https';
 
 
 export const addPaymentGateway = async (request, response) => {
+    paytmParams['TXN_AMOUNT'] = request.body.amount;
     const paytmCheckSum = await paytmchecksum.generateSignature(paytmParams, paytmMerchantkey);
     try {
         const params = {
@@ -50,6 +51,7 @@ export const paymentResponse = (request, response) => {
             let res = "";
             const post_req = https.request(options, function (post_res) {
                 post_res.on('data', function (chunk) {
+                    console.log("Chunk Data : ",chunk);
                     res += chunk;
                 });
 
@@ -59,6 +61,7 @@ export const paymentResponse = (request, response) => {
                     response.redirect(`http://localhost:3000/`)
                 });
             });
+            //post_data is sent as body through http request using post_req.write();
             post_req.write(post_data);
             post_req.end();
         });
