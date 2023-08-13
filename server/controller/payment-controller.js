@@ -6,7 +6,8 @@ import https from 'https';
 
 
 export const addPaymentGateway = async (request, response) => {
-    paytmParams['TXN_AMOUNT'] = request.body.amount;
+    paytmParams['TXN_AMOUNT'] = request.body.amount.toString();
+    console.log(paytmParams)
     const paytmCheckSum = await paytmchecksum.generateSignature(paytmParams, paytmMerchantkey);
     try {
         const params = {
@@ -22,6 +23,7 @@ export const addPaymentGateway = async (request, response) => {
 export const paymentResponse = (request, response) => {
 
     const form = new formidable.IncomingForm();
+    // form.parse()
     const paytmCheckSum = request.body.CHECKSUMHASH;
     delete request.body.CHECKSUMHASH;
 
