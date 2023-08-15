@@ -1,7 +1,7 @@
 import User from '../model/userSchema.js';
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-const JWT_SECRET = 'Ecom@Web';
+const JWT_SECRET = process.env.JWT_SECRET;
 export const userLogIn = async (req, res) => {
     try {
         const {username,password} = req.body;
@@ -20,7 +20,11 @@ export const userLogIn = async (req, res) => {
             }
         }
         const authtoken = jwt.sign(data, JWT_SECRET);
+        res.cookie("auth_token",authtoken,{
+            httpOnly:true
+        });
         return res.status(200).json({authtoken});
+        // res.status(200).send("signedup successfully")
     } catch (error) {
         res.json('Error: ', error.message);        
     }
@@ -50,8 +54,12 @@ export const userSignUp = async (req, res) => {
                 id:user.id
             }
         }
-        const authtoken = jwt.sign(data, JWT_SECRET);
+        const authtoken = jwt.sign(data, JWT_SECRET,{expiresIn:"15m"});
+        res.cookie("auth_token",authtoken,{
+            httpOnly:true
+        });
         res.status(200).json( {authtoken} );
+        // res.status(200).send("signedup successfully")
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
