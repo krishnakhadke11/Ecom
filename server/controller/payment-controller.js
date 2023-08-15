@@ -8,7 +8,7 @@ import https from 'https';
 
 export const addPaymentGateway = async (request, response) => {
     paytmParams['TXN_AMOUNT'] = request.body.amount.toString();
-    console.log(paytmParams)
+    // console.log(paytmParams)
    
     try {
         let paytmCheckSum = await paytmchecksum.generateSignature(paytmParams, paytmMerchantkey);

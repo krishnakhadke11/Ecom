@@ -48,7 +48,7 @@ const ActionItem = ({ product }) => {
   }
 
   const buyNow = async () => {
-    let response = await payUsingPaytm({ amount: 500, email: 'mounika@gmail.com'});
+    let response = await payUsingPaytm({ amount: 500, email: 'riskmprt13@gmail.com'});
     console.log(response);
     let information = {
       action: 'https://securegw-stage.paytm.in/order/process', 

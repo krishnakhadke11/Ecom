@@ -10,16 +10,27 @@ export const getCartProducts = async (req,res)=>{
 }
 export const addCartProducts = async (req,res)=>{
     try {
-        const {productId} = req.body;
+        const {productId,isDec} = req.body;
         let checkExist = await Cart.find({user:req.user.id,productId:productId})
         // console.log(checkExist)
-        if(checkExist.length>0){
-           let res =  await Cart.updateOne({user:req.user.id,productId:productId},{
+        if(checkExist.length>0 && !isDec){
+                await Cart.updateOne({user:req.user.id,productId:productId},{
                 $inc:{
                     quantity:1
                 }
             })
-            return res.status(200).json(res);
+            checkExist[0].quantity=checkExist[0].quantity+1;
+            return res.status(200).json(checkExist);
+        }else if(checkExist.length>0 && checkExist[0].quantity>1 && isDec){
+                await Cart.updateOne({user:req.user.id,productId:productId},{
+                $inc:{
+                    quantity:-1
+                }
+            })
+            checkExist[0].quantity=checkExist[0].quantity-1;
+            return res.status(200).json(checkExist);
+        }else if(checkExist.length>0 && checkExist[0].quantity==1 && isDec){
+            return res.status(500).send("You can cannot decrement further")
         }
         const prod = await Cart.create({
             user:req.user.id,
@@ -41,6 +52,7 @@ export const deleteCartProduct = async (req,res) =>{
         if (product.user.toString() !== req.user.id) {
             return res.status(401).send("Not Allowed");
         }
+
         product = await Cart.findByIdAndDelete(req.params.id);
         res.json({ "Success": "Product has been deleted", product: product });
     } catch (error) {
