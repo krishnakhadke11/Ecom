@@ -14,18 +14,18 @@ export const addCartProducts = async (req,res)=>{
         let checkExist = await Cart.find({user:req.user.id,productId:productId})
         // console.log(checkExist)
         if(checkExist.length>0){
-            await Cart.updateOne({user:req.user.id,productId:productId},{
+           let res =  await Cart.updateOne({user:req.user.id,productId:productId},{
                 $inc:{
                     quantity:1
                 }
             })
-            return res.status(200).send(`Added in the cart id: ${productId}`);
+            return res.status(200).json(res);
         }
         const prod = await Cart.create({
             user:req.user.id,
             productId:productId
         })
-        res.status(200).send(`Added in the cart id: ${productId}`)
+        res.status(200).json(prod)
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Internal Server Error");

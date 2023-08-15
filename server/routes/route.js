@@ -1,7 +1,7 @@
 import express from  'express';
 import { userSignUp, userLogIn } from '../controller/user-controller.js';
 import { getProducts, getProductById } from '../controller/products-controller.js';
-import {addPaymentGateway} from '../controller/payment-controller.js'
+import {addPaymentGateway,paymentResponse} from '../controller/payment-controller.js'
 import {fetchuser} from '../middleware/fetchuser.js'
 import { getCartProducts,addCartProducts,deleteCartProduct } from '../controller/cart-controller.js';
 
@@ -18,6 +18,6 @@ router.post('/addCart',fetchuser,addCartProducts);
 router.delete('/deleteCartProd/:id',fetchuser,deleteCartProduct);
 
 router.post('/payment', addPaymentGateway);
-// router.post('/callback', paymentResponse);
+router.post('/callback', paymentResponse);
 
 export default router;
