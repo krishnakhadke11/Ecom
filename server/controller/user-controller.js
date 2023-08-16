@@ -7,12 +7,12 @@ export const userLogIn = async (req, res) => {
         const {username,password} = req.body;
         let user = await User.findOne({ username: username});
         if(!user){
-            return res.status(400).json({error:"Please enter correct Credential"})
+            return res.status(401).json({error:"Please enter correct Credential"})
         }
 
         let passCompare = await bcrypt.compare(password,user.password);
         if(!passCompare){
-            return res.status(400).json({error:"Please enter correct Credential"})
+            return res.status(401).json({error:"Please enter correct Credential"})
         }
         const data = {
             user:{
@@ -26,7 +26,7 @@ export const userLogIn = async (req, res) => {
         return res.status(200).json({authtoken});
         // res.status(200).send("signedup successfully")
     } catch (error) {
-        res.json('Error: ', error.message);        
+        res.status(500).json('Error: ', error.message);        
     }
 }
 
