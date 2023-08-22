@@ -20,9 +20,6 @@ export const userLogIn = async (req, res) => {
             }
         }
         const authtoken = jwt.sign(data, JWT_SECRET);
-        res.cookie("auth_token",authtoken,{
-            httpOnly:true
-        });
         return res.status(200).json({authtoken});
         // res.status(200).send("signedup successfully")
     } catch (error) {
@@ -55,9 +52,7 @@ export const userSignUp = async (req, res) => {
             }
         }
         const authtoken = jwt.sign(data, JWT_SECRET,{expiresIn:"15m"});
-        res.cookie("auth_token",authtoken,{
-            httpOnly:true
-        });
+       
         res.status(200).json( {authtoken} );
         // res.status(200).send("signedup successfully")
     } catch (error) {

@@ -13,7 +13,7 @@ export const fetchuser = (req, res, next) => {
         req.user = data.user;
         next();
     } catch (error) {
-        res.clearCookie("auth-token")
+        res.clearCookie("auth_token")
         res.status(401).send({ error: "Please authenticate using a valid token" })
     }
 
