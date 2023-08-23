@@ -3,6 +3,7 @@ import { Box, Button, Dialog, TextField, Typography } from '@mui/material'
 import React, { useState, useContext } from 'react'
 import { authenticateSignup, authenticateLogin } from '../../service/api';
 import { DataContext } from '../../context/DataProvider';
+import Cookies from 'js-cookie'
 
 const Component = styled(Box)`
     height : 79vh;
@@ -89,12 +90,13 @@ const loginInitialValues = {
 }
 
 function LoginDialog({open, setOpen}) {
+
     const [signup, setSignup] = useState(signupInitialValues);
     const [loginaccount, toggleAccount] = useState(accountInitialValues.login);
     const [login, setLogin] = useState(loginInitialValues)
     const [error, setError] = useState(false);
+    const { setAccount } = useContext(DataContext);
 
-    const {setAccount} = useContext(DataContext)
 
     const handleClose = () => {
         setOpen(false);
@@ -117,8 +119,15 @@ function LoginDialog({open, setOpen}) {
     const loginUser = async() => {
         let response = await authenticateLogin(login);
         console.log(response)
+        const username = login.username;
+        const auth_token = response.data.authtoken
         if(response.status === 200){
-            setAccount(login.username);
+            const userData = {
+                username,
+                auth_token
+            }; 
+            Cookies.set('auth_token', JSON.stringify(userData), { expires: 1 });
+            setAccount(username);
             handleClose();
         }
         else{
@@ -129,8 +138,16 @@ function LoginDialog({open, setOpen}) {
     const signupUser = async() => {
         let response = await authenticateSignup(signup);
         if(!response) return;
+        const username = login.username;
+        const auth_token = response.data.authtoken
+        const userData = {
+            username,
+            auth_token
+        }; 
+        // const expirationTime = new Date(new Date().getTime() + 60000);
+        Cookies.set('auth_token', JSON.stringify(userData), { expires: 1 });
         handleClose();
-        setAccount(response.data.username);
+        
     }    
 
   return (

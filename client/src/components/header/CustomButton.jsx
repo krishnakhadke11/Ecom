@@ -1,10 +1,11 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { Badge, Box, Button, Typography, styled } from '@mui/material'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { DataContext } from '../../context/DataProvider';
 import Profile from './Profile';
 import { Link } from 'react-router-dom'
 import { UseSelector, useSelector } from 'react-redux/es/hooks/useSelector';
+import Cookies from 'js-cookie';
 
 //components
 import LoginDialog from '../login/LoginDialog';
@@ -49,6 +50,15 @@ function CustomButton() {
 
     const [open, setOpen] = useState(false);
     const { account, setAccount } = useContext(DataContext);
+
+    useEffect(() => {
+        const userCookie = Cookies.get('auth_token');
+        if(userCookie){
+            const user = JSON.parse(userCookie);
+            setAccount(user.username);
+        }
+    }, [account])
+
     const openDialog = () => {
         setOpen(true);
     }

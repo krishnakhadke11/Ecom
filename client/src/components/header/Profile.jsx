@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { Typography, Box, Menu, MenuItem } from '@mui/material'
 import LogoutIcon from '@mui/icons-material/Logout';
 import React, { useState } from 'react'
+import Cookies from 'js-cookie';
 
 const Component = styled(Menu)`
     margin-top : 5px;
@@ -20,6 +21,7 @@ function Profile({account, setAccount}) {
     }
 
     const logout = () => {
+        Cookies.remove('auth_token')
         setAccount('')
     }
 

@@ -2,10 +2,12 @@ import axios from "axios";
 import * as actionTypes from '../constants/cartConstants'
 const URL = "http://localhost:5000";
 
-export const addToCart = (id, quantity) => async(dispatch) => {
+export const showCart = () => async(dispatch) => {
     try{
-        const { data } = await axios.get(`${URL}/product/${id}`);
-        dispatch({ type : actionTypes.ADD_TO_CART, payload : {...data, quantity}});
+        const { data } = await axios.get(`${URL}/cart`);
+        console.log(data)
+        
+        dispatch({ type : actionTypes.ADD_TO_CART, payload : {...data }});
     }
     catch(error){
         dispatch({ type : actionTypes.ADD_TO_CART_ERROR, payload : error.message });

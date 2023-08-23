@@ -3,8 +3,9 @@ import { Box, Button, styled } from '@mui/material';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { addToCart } from '../../service/api';
 
-import { addToCart } from '../../redux/actions/cartActions'
+import { showCart } from '../../redux/actions/cartActions'
 import{ ShoppingCart as Cart,  FlashOn as Flash} from '@mui/icons-material';
 
 import { payUsingPaytm  } from '../../service/api';
@@ -42,8 +43,9 @@ const ActionItem = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
   const { id } = product;
 
-  const addItemToCart = () =>{
-    dispatch(addToCart(id, quantity))
+  const addItemToCart = async () =>{
+    let response = await addToCart(id, false);
+    dispatch(showCart())
     navigate('/cart');
   }
 

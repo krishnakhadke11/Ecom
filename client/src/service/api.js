@@ -30,3 +30,15 @@ export const payUsingPaytm = async(data) => {
         console.log("error while calling paytm api ", error); 
     }
 }
+
+
+export const addToCart = async(productId, isDec) =>{
+    try{
+        let response = await axios.post(`${URL}/addCart`, {productId, isDec})
+        console.log(response);
+        return response.data;
+    }
+    catch(error){
+        console.log("error while adding to cart : ", error)
+    }
+}
