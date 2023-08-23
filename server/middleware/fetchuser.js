@@ -4,7 +4,10 @@ const JWT_SECRET = process.env.JWT_SECRET;
 export const fetchuser = (req, res, next) => {
     // Get the user from the jwt token and add id to req object
     // const token = req.header('auth-token');
-    const token = req.cookies.auth_token;
+    // console.log(req)
+    const userCookie = req.cookies.auth_token;
+    const user = JSON.parse(userCookie);
+    const token = user.auth_token;
     if (!token) {
         res.status(401).send({ error: "Please authenticate using a valid token" })
     }
