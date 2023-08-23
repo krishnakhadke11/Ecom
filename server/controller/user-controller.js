@@ -19,6 +19,7 @@ export const userLogIn = async (req, res) => {
                 id:user.id
             }
         }
+        
         const authtoken = jwt.sign(data, JWT_SECRET);
         return res.status(200).json({authtoken});
         // res.status(200).send("signedup successfully")
