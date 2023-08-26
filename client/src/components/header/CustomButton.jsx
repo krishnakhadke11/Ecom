@@ -49,7 +49,7 @@ const LoginButton = styled(Button)`
 function CustomButton() {
 
     const [open, setOpen] = useState(false);
-    const { account, setAccount } = useContext(DataContext);
+    const { account, setAccount, setToken } = useContext(DataContext);
 
     useEffect(() => {
         const userCookie = Cookies.get('auth_token');
@@ -67,7 +67,7 @@ function CustomButton() {
   return (
     <Wrapper>
         {
-            account ? <Profile account={account} setAccount={setAccount} />
+            account ? <Profile account={account} setAccount={setAccount} setToken={setToken} />
             : <LoginButton variant='contained' onClick={openDialog}>Login</LoginButton>
         }
         <Typography style={{marginTop:3, width:135}}>Become a Seller</Typography>

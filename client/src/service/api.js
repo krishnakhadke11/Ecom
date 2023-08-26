@@ -2,8 +2,10 @@ import axios from 'axios';
 
 const URL = "http://localhost:5000";
 
+
 export const authenticateSignup = async(data) => {
     try{
+        
         return await axios.post(`${URL}/signup`, data);
     }
     catch(error){
@@ -32,9 +34,13 @@ export const payUsingPaytm = async(data) => {
 }
 
 
-export const addToCart = async(productId, isDec) =>{
+export const addToCart = async(productId, isDec, auth_token) =>{
     try{
-        let response = await axios.post(`${URL}/addCart`, {productId, isDec})
+        let response = await axios.post(`${URL}/addCart`, {productId, isDec}, {
+            headers : {
+                'auth_token' : auth_token
+            }
+        })
         console.log(response);
         return response.data;
     }

@@ -8,7 +8,7 @@ const Component = styled(Menu)`
     margin-top : 5px;
 `;
 
-function Profile({account, setAccount}) {
+function Profile({account, setAccount, setToken}) {
 
     const [open, setOpen] = useState(false);
 
@@ -23,6 +23,7 @@ function Profile({account, setAccount}) {
     const logout = () => {
         Cookies.remove('auth_token')
         setAccount('')
+        setToken('')
     }
 
   return (

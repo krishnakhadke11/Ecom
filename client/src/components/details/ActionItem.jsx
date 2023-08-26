@@ -1,15 +1,17 @@
 import { Box, Button, styled } from '@mui/material';
 
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../service/api';
+import { DataContext } from '../../context/DataProvider';
 
 import { showCart } from '../../redux/actions/cartActions'
 import{ ShoppingCart as Cart,  FlashOn as Flash} from '@mui/icons-material';
 
 import { payUsingPaytm  } from '../../service/api';
 import {post} from '../../utils/paytm'
+
 const LeftContainer = styled(Box)(({ theme })=>({
   minWidth: '40%',
   padding: '40px 0 0 80px',
@@ -42,9 +44,10 @@ const ActionItem = ({ product }) => {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
   const { id } = product;
+  const { token } = useContext(DataContext)
 
   const addItemToCart = async () =>{
-    let response = await addToCart(id, false);
+    await addToCart(id, false, token);
     dispatch(showCart())
     navigate('/cart');
   }

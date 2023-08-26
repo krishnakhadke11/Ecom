@@ -95,7 +95,7 @@ function LoginDialog({open, setOpen}) {
     const [loginaccount, toggleAccount] = useState(accountInitialValues.login);
     const [login, setLogin] = useState(loginInitialValues)
     const [error, setError] = useState(false);
-    const { setAccount } = useContext(DataContext);
+    const { setAccount, setToken } = useContext(DataContext);
 
 
     const handleClose = () => {
@@ -128,6 +128,7 @@ function LoginDialog({open, setOpen}) {
             }; 
             Cookies.set('auth_token', JSON.stringify(userData), { expires: 1 });
             setAccount(username);
+            setToken(auth_token)
             handleClose();
         }
         else{
@@ -146,6 +147,8 @@ function LoginDialog({open, setOpen}) {
         }; 
         // const expirationTime = new Date(new Date().getTime() + 60000);
         Cookies.set('auth_token', JSON.stringify(userData), { expires: 1 });
+        setAccount(username)
+        setToken(auth_token)
         handleClose();
         
     }    

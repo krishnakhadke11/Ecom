@@ -6,11 +6,14 @@ export const DataContext = createContext(null);
 function DataProvider({children}) {
 
     const [account, setAccount] = useState('')
+    const [token, setToken] = useState('')
 
   return (
     <DataContext.Provider value={{
         account, 
-        setAccount
+        setAccount,
+        token,
+        setToken
     }}>
         {children} 
     </DataContext.Provider>
