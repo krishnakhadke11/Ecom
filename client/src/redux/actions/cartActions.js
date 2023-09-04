@@ -2,9 +2,13 @@ import axios from "axios";
 import * as actionTypes from '../constants/cartConstants'
 const URL = "http://localhost:5000";
 
-export const showCart = () => async(dispatch) => {
+export const showCart = (auth_token) => async(dispatch) => {
     try{
-        const { data } = await axios.get(`${URL}/cart`);
+        const { data } = await axios.get(`${URL}/cart`, {
+            headers : {
+                'auth_token' : auth_token
+            }
+        });
         console.log(data)
         
         dispatch({ type : actionTypes.ADD_TO_CART, payload : {...data }});

@@ -48,7 +48,7 @@ const ActionItem = ({ product }) => {
 
   const addItemToCart = async () =>{
     await addToCart(id, false, token);
-    dispatch(showCart())
+    dispatch(showCart(token))
     navigate('/cart');
   }
 
