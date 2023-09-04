@@ -52,7 +52,7 @@ export const userSignUp = async (req, res) => {
                 id:user.id
             }
         }
-        const authtoken = jwt.sign(data, JWT_SECRET,{expiresIn:"15m"});
+        const authtoken = jwt.sign(data, JWT_SECRET);
        
         res.status(200).json( {authtoken} );
         // res.status(200).send("signedup successfully")

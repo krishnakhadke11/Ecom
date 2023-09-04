@@ -5,7 +5,7 @@ export const getCartProducts = async (req,res)=>{
         res.json(products);
     } catch (error) {
         console.error(error.message);
-        res.status(500).send("Internal Server Error");
+        res.status(500).send("Internal Server Error getCart");
     }
 }
 export const addCartProducts = async (req,res)=>{
@@ -39,7 +39,7 @@ export const addCartProducts = async (req,res)=>{
         res.status(200).json(prod)
     } catch (error) {
         console.error(error.message);
-        res.status(500).send("Internal Server Error");
+        res.status(500).send("Internal Server Error addcart");
     }
   
 }
