@@ -2,11 +2,9 @@ import { Box, Button, styled } from '@mui/material';
 
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { addToCart } from '../../service/api';
 import { DataContext } from '../../context/DataProvider';
 
-import { showCart } from '../../redux/actions/cartActions'
 import{ ShoppingCart as Cart,  FlashOn as Flash} from '@mui/icons-material';
 
 import { payUsingPaytm  } from '../../service/api';
@@ -41,14 +39,14 @@ const Styledbutton = styled(Button)(({ theme }) => ({
 const ActionItem = ({ product }) => {
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
   const { id } = product;
   const { token } = useContext(DataContext)
 
   const addItemToCart = async () =>{
-    await addToCart(id, false, token);
-    dispatch(showCart(token))
+    let response = await addToCart(id, false, token);
+    console.log(response)
+    
     navigate('/cart');
   }
 

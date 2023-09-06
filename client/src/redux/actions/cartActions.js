@@ -11,7 +11,7 @@ export const showCart = (auth_token) => async(dispatch) => {
         });
         console.log(data)
         
-        dispatch({ type : actionTypes.ADD_TO_CART, payload : {...data }});
+        dispatch({ type : actionTypes.ADD_TO_CART, payload : data});
     }
     catch(error){
         dispatch({ type : actionTypes.ADD_TO_CART_ERROR, payload : error.message });

@@ -38,6 +38,7 @@ function CartItem({ item }) {
     const removeItemFromCart = (id) => {
         dispatch(removeFromCart(id));
     }
+    console.log(item)
 
   return (
     <Container>
