@@ -56,30 +56,40 @@ function Cart() {
   const {cartItems} = useSelector(state => state.cart);
   const {products} = useSelector(state => state.getProducts);
   const [items, setItems] = useState([]);
-  useEffect(()=>{
+  // useEffect(()=>{
+  //   const token = Cookies.get('auth_token');
+  //   if(token){
+  //     const user = JSON.parse(token)
+  //     dispatch(showCart(user.auth_token));
+  //     setToken(user.auth_token);
+  //   }
+  //   console.log("Running..",cartItems);
+  //   const matchingObjects = products.filter(obj1 => {
+  //     const obj2 = cartItems[0]?.find(obj2 => obj2.productId === obj1.id);
+  //     return obj2 !== undefined; // If obj2 is found, it's a match
+  //   });
+  //   // console.log(matchingObjects)
+  //   setItems(matchingObjects);
+  // }, [dispatch])
+
+  useEffect(() => {
     const token = Cookies.get('auth_token');
     if(token){
       const user = JSON.parse(token)
       dispatch(showCart(user.auth_token));
       setToken(user.auth_token);
     }
-    const matchingObjects = products.filter(obj1 => {
-      const obj2 = cartItems[0]?.find(obj2 => obj2.productId === obj1.id);
-      return obj2 !== undefined; // If obj2 is found, it's a match
-    });
-    console.log(matchingObjects)
-    setItems(matchingObjects);
-  }, [])
-
-  // useEffect(() => {
-  //   // const matchingObjects = products.filter(obj1 => {
-  //   //   const obj2 = cartItems[0]?.find(obj2 => obj2.productId === obj1.id);
-  //   //   return obj2 !== undefined; // If obj2 is found, it's a match
-  //   // });
-  //   // setItems(matchingObjects);
-  // }, [items])
+    console.log("Running..",cartItems);
+  }, [dispatch])
   
-
+useEffect(()=>{
+  const matchingObjects = products.filter(obj1 => {
+        const obj2 = cartItems[0]?.find(obj2 => obj2.productId === obj1.id);
+        return obj2 !== undefined; // If obj2 is found, it's a match
+      });
+      // console.log(matchingObjects)
+      setItems(matchingObjects);
+},[cartItems])
   
 
   const buyNow = async () => {

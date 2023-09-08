@@ -42,7 +42,7 @@ function CartItem({ item , token}) {
         removeFromCart(id, token);
         dispatch(showCart(token))
     }
-    console.log(item)
+    // console.log(item)
 
   return (
     <Container>
@@ -53,7 +53,7 @@ function CartItem({ item , token}) {
         <Box style={{ margin : 20 }}>
             <Typography>{addEllipsis(item.title.longTitle)}</Typography>
             <SmallText>Seller : RetailNet
-                <Box component="spam"><img src={fassured} alt='flipkart' style={{width : 50, marginLeft: 10 }} /></Box>
+                <Box component="span"><img src={fassured} alt='flipkart' style={{width : 50, marginLeft: 10 }} /></Box>
             </SmallText>
             <Typography style={{ margin : '20px 0' }}>
                 <Box component="span" style={{ fontWeight: 600, fontSize : 18 }}>₹{item.price.cost}</Box>&nbsp;&nbsp;&nbsp;
