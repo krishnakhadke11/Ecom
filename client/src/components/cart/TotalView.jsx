@@ -58,7 +58,7 @@ function TotalView({ cartItems }) {
             <Heading>PRICE DETAILS</Heading>
         </Header>
         <Container>
-            <Typography>Price ({cartItems?.length} items)
+            <Typography>Price ({cartItems.length} items)
                 <Price component="span">₹{price}</Price>
             </Typography>
             <Typography>Discount 

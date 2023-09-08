@@ -45,15 +45,17 @@ export const addCartProducts = async (req,res)=>{
 }
 export const deleteCartProduct = async (req,res) =>{
     try {
-        let product = await Cart.findById(req.params.id);
+        let itemId = { productId : req.params.id};
+        let product = await Cart.find(itemId);
+        console.log(product);
         if(!product){
             return res.status(404).send("Not Found")
         }
-        if (product.user.toString() !== req.user.id) {
+        if (product[0].user.toString() !== req.user.id) {
             return res.status(401).send("Not Allowed");
         }
 
-        product = await Cart.findByIdAndDelete(req.params.id);
+        product = await Cart.findOneAndDelete(itemId);
         res.json({ "Success": "Product has been deleted", product: product });
     } catch (error) {
         console.error(error.message);

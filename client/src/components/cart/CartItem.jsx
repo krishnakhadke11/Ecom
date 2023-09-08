@@ -4,7 +4,8 @@ import { addEllipsis } from '../../utils/common-utils'
 
 import GroupedButton from './GroupedButton'
 import { useDispatch } from 'react-redux'
-import { removeFromCart } from '../../redux/actions/cartActions'
+import { removeFromCart } from '../../service/api'
+import { showCart } from '../../redux/actions/cartActions'
 
 const Container = styled(Box)`
     border-top : 1px solid #f0f0f0;
@@ -31,12 +32,15 @@ const Remove = styled(Button)`
     font-weight : 600;
 `
 
-function CartItem({ item }) {
+function CartItem({ item , token}) {
+
+
 
     const fassured = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/fa_62673a.png';
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const removeItemFromCart = (id) => {
-        dispatch(removeFromCart(id));
+        removeFromCart(id, token);
+        dispatch(showCart(token))
     }
     console.log(item)
 

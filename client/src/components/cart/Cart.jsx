@@ -1,9 +1,10 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import { useSelector } from 'react-redux/es/hooks/useSelector'
 import { useDispatch } from 'react-redux';
 import { DataContext } from '../../context/DataProvider';
 import { showCart } from '../../redux/actions/cartActions';
 import { Grid, Typography, Box, styled, Button } from '@mui/material'
+import Cookies from 'js-cookie';
 
 import CartItem from './CartItem';
 import TotalView from './TotalView';
@@ -49,26 +50,37 @@ const StyledButton = styled(Button)`
 
 function Cart() {
 
-  const { token } = useContext(DataContext)
+  const { token, setToken } = useContext(DataContext)
   const dispatch = useDispatch();
 
   const {cartItems} = useSelector(state => state.cart);
   const {products} = useSelector(state => state.getProducts);
-  var matchingObjects
+  const [items, setItems] = useState([]);
   useEffect(()=>{
-    if(token) dispatch(showCart(token))
-    matchingObjects = products.filter(obj1 => {
+    const token = Cookies.get('auth_token');
+    if(token){
+      const user = JSON.parse(token)
+      dispatch(showCart(user.auth_token));
+      setToken(user.auth_token);
+    }
+    const matchingObjects = products.filter(obj1 => {
       const obj2 = cartItems[0]?.find(obj2 => obj2.productId === obj1.id);
       return obj2 !== undefined; // If obj2 is found, it's a match
     });
+    console.log(matchingObjects)
+    setItems(matchingObjects);
   }, [])
 
+  // useEffect(() => {
+  //   // const matchingObjects = products.filter(obj1 => {
+  //   //   const obj2 = cartItems[0]?.find(obj2 => obj2.productId === obj1.id);
+  //   //   return obj2 !== undefined; // If obj2 is found, it's a match
+  //   // });
+  //   // setItems(matchingObjects);
+  // }, [items])
   
-  // cartItems[0]?.forEach((obj) => console.log(obj.productId))
-  // console.log("cartitems : ")
-  // console.log(cartItems[0])
-  // console.log(cartItems[1])
-  // console.log(matchingObjects);
+
+  
 
   const buyNow = async () => {
     let response = await payUsingPaytm({ amount: 500, email: 'mounika@gmail.com'});
@@ -81,15 +93,15 @@ function Cart() {
 
   return (
     <>
-      { cartItems.length ? 
+      { items.length ? 
         <Container  container>  
           <LeftContainer item lg={9} md={9} sm={12} xs={12}>
             <Header>
-              <Typography>My Cart ({cartItems.length})</Typography>
+              <Typography>My Cart ({items.length})</Typography>
             </Header>
             {
-              matchingObjects.map(item => (
-                <CartItem item={item}/>
+              items.map(item => (
+                <CartItem key={item.id} item={item} token={token}/>
               ))
             }
             <ButtonWrapper>
@@ -97,7 +109,7 @@ function Cart() {
             </ButtonWrapper>
           </LeftContainer>
           <Grid item lg={3} md={3} sm={12} xs={12}>
-            <TotalView cartItems={matchingObjects}/>
+            <TotalView cartItems={items}/>
           </Grid>
         </Container> 
         : <EmptyCart/>

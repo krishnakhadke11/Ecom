@@ -33,7 +33,6 @@ export const payUsingPaytm = async(data) => {
     }
 }
 
-
 export const addToCart = async(productId, isDec, auth_token) =>{
     try{
         let response = await axios.post(`${URL}/addCart`, {productId, isDec}, {
@@ -46,5 +45,19 @@ export const addToCart = async(productId, isDec, auth_token) =>{
     }
     catch(error){
         console.log("error while adding to cart : ", error)
+    }
+}
+
+export const removeFromCart = async(productId, auth_token) => {
+    try{
+        let response = await axios.delete(`${URL}/deleteCartProd/${productId}`, {
+            headers : {
+                'auth_token' : auth_token
+            }
+        })
+        console.log(response)
+    }
+    catch(error){
+        console.log("error while removing products : ", error.message);
     }
 }

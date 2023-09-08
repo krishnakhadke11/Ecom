@@ -73,7 +73,7 @@ function CustomButton() {
         <Typography style={{marginTop:3, width:135}}>Become a Seller</Typography>
         <Typography style={{marginTop:3}}>More</Typography>
         <Container to='/cart'>
-            <Badge badgeContent={cartItems?.length} color='secondary'>
+            <Badge badgeContent={cartItems[0]?.length} color='secondary'>
                 <ShoppingCartIcon/>
             </Badge>
             <Typography style={{marginLeft : 10 }}>Cart</Typography>
