@@ -56,6 +56,7 @@ export const removeFromCart = async(productId, auth_token) => {
             }
         })
         console.log(response)
+        return response;
     }
     catch(error){
         console.log("error while removing products : ", error.message);

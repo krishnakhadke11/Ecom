@@ -32,15 +32,15 @@ const Price = styled(Box)`
     float : right;
 `
 
-function TotalView({ cartItems }) {
+function TotalView({ items, cartItems }) {
 
     const [price, setPrice] = useState(0);
     const [discount, setDiscount] = useState(0);
 
     const totalAmount = () => {
         let price = 0, discount = 0;
-        cartItems.map(item => {
-            price += item.price.mrp;
+        items.map(item => {
+            price += (item.price.mrp * item.quantity);
             discount += item.price.mrp - item.price.cost;
         })
         setPrice(price);
@@ -49,8 +49,8 @@ function TotalView({ cartItems }) {
 
     useEffect(() => {
         totalAmount();
-    }, [cartItems])
-
+    }, [items])
+ 
 
   return (
     <Box>

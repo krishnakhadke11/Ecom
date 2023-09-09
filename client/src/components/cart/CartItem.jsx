@@ -38,17 +38,19 @@ function CartItem({ item , token}) {
 
     const fassured = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/fa_62673a.png';
     const dispatch = useDispatch();
-    const removeItemFromCart = (id) => {
-        removeFromCart(id, token);
-        dispatch(showCart(token))
+    const removeItemFromCart = async (id) => {
+        let response = await removeFromCart(id, token);
+        if(response.status === 200) {
+            dispatch(showCart(token))
+        }
     }
-    // console.log(item)
+    console.log(item)
 
   return (
     <Container>
         <LeftComponent>
             <img src={item.url} alt='produnt' style={{ height : 110, width : 110 }} />
-            <GroupedButton />
+            <GroupedButton item={item}/>
         </LeftComponent>
         <Box style={{ margin : 20 }}>
             <Typography>{addEllipsis(item.title.longTitle)}</Typography>

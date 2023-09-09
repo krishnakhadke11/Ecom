@@ -119,7 +119,7 @@ useEffect(()=>{
             </ButtonWrapper>
           </LeftContainer>
           <Grid item lg={3} md={3} sm={12} xs={12}>
-            <TotalView cartItems={items}/>
+            <TotalView items={items} cartItems={cartItems}/>
           </Grid>
         </Container> 
         : <EmptyCart/>
