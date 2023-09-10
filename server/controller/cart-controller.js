@@ -1,7 +1,23 @@
 import Cart from '../model/cartSchema.js'
+import Products from '../model/productSchema.js';
 export const getCartProducts = async (req,res)=>{
     try {
-        const products = await Cart.find({user:req.user.id});
+        const cartProducts = await Cart.find({ user: req.user.id });
+        
+        // Adding "price" to the cartProducts
+        const cart = cartProducts.map(async (cartItem) => {
+            const productDetail = await Products.findOne({ 'id': cartItem.productId });
+            const item = {
+                ...cartItem.toObject(), // Convert cartItem to a plain JavaScript object
+                price: productDetail.price, // Include price from productDetail
+            };
+            return item;
+        });
+        
+        // Wait for all promises to resolve using Promise.all
+        const products = await Promise.all(cart);
+
+        // console.log(products);
         res.json(products);
     } catch (error) {
         console.error(error.message);
