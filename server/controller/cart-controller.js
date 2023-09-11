@@ -46,7 +46,7 @@ export const addCartProducts = async (req,res)=>{
             checkExist[0].quantity=checkExist[0].quantity-1;
             return res.status(200).json(checkExist);
         }else if(checkExist.length>0 && checkExist[0].quantity==1 && isDec){
-            return res.status(500).send("You can cannot decrement further")
+            return;
         }
         const prod = await Cart.create({
             user:req.user.id,
