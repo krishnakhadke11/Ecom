@@ -54,3 +54,7 @@ The implementation of these steps yields the following outcomes:
 # Product details
 ![image](https://github.com/krishnakhadke11/Ecom/assets/81074309/2e05c9d5-f554-4376-934b-bb1fe6615e01)
 
+# A personalised cart seperate for each user after the user is logged in and authenticated
+![image](https://github.com/krishnakhadke11/Ecom/assets/81074309/db5fb787-0457-492f-b84c-0dacc80ab179)
+
+
