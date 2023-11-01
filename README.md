@@ -56,5 +56,5 @@ The implementation of these steps yields the following outcomes:
 
 # A personalised cart seperate for each user after the user is logged in and authenticated
 ![image](https://github.com/krishnakhadke11/Ecom/assets/81074309/db5fb787-0457-492f-b84c-0dacc80ab179)
-
+you can even use the + and - signs to increase and decrease the number of one singular item to be purchased
 
