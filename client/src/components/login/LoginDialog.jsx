@@ -4,16 +4,19 @@ import React, { useState, useContext } from 'react'
 import { authenticateSignup, authenticateLogin } from '../../service/api';
 import { DataContext } from '../../context/DataProvider';
 import Cookies from 'js-cookie'
+import logo from '../../images/login.png'
+
 
 const Component = styled(Box)`
-    height : 79vh;
+    height : 75vh;
     width : 95vh;
     display : flex;
 `
 
 const Image = styled(Box)`
-    background : #2874f0 url(https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/login_img_c4a81e.png) no-repeat center 85%;
-    height : 81%;
+    background-color : #f85721;
+    // background : #f85721 url(../../images/login.png) no-repeat center 85%;
+    // height : 85%;
     width : 30%;
     padding : 45px 35px;
     color : white;
@@ -41,7 +44,7 @@ const LoginButton = styled(Button)`
 const RequestOTP = styled(Button)`
 text-transform : none;
 background : #fff;
-color : #2874f0;
+color : #24335e;
 height : 48px;
 border-radius : 2px;
 box-shadow : 0 2px 4px 0 rgb(0 0 0/ 20%);
@@ -50,7 +53,7 @@ box-shadow : 0 2px 4px 0 rgb(0 0 0/ 20%);
 const CreateAccount = styled(Typography)`
     font-size : 14px;
     text-align : center;
-    color : #2874f0;
+    color : #24335e;
     font-weight : 600;
     cursor : pointer;
 `
@@ -160,17 +163,18 @@ function LoginDialog({open, setOpen}) {
                 <Image>
                     <Typography variant='h5'>{loginaccount.heading}</Typography>
                     <Typography style={{ marginTop : 20 }}>{loginaccount.subHeading}</Typography>
+                    <img style={{ height:250, marginTop:120, marginLeft:-20 }} src={logo} alt='login logo' />
                 </Image>
                 { loginaccount.view === 'login' ?
                     <Wrapper>
                         <TextField variant='standard' name='username' onChange={(e) => onValueChange(e)} label='Enter Username'></TextField>
                         <TextField variant='standard' name='password' onChange={(e) => onValueChange(e)} label='Enter Password'></TextField>
                         {error && <Error>Please enter valid username and password</Error>}
-                        <Typography style={{fontSize: 12, color: '#878787'}}>By continuing, you agree to Flipkart's Terms of Use and Privacy Policy.</Typography>
+                        <Typography style={{fontSize: 12, color: '#878787'}}>By continuing, you agree to Best Buy's Terms of Use and Privacy Policy.</Typography>
                         <LoginButton onClick={loginUser}>Login</LoginButton>
                         <Typography style={{ textAlign : 'center'}}>OR</Typography>
                         <RequestOTP>Request OTP</RequestOTP>
-                        <CreateAccount onClick={toggleSignup}>New to Flipkart? Create an account</CreateAccount>
+                        <CreateAccount onClick={toggleSignup}>New to Best Buy? Create an account</CreateAccount>
                     </Wrapper>
                 :
                     <Wrapper>

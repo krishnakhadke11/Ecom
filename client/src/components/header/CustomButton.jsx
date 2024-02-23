@@ -35,16 +35,20 @@ const Container = styled(Link)(({ theme }) => ({
 }));
 
 
-const LoginButton = styled(Button)`
-    color : #2874f0;
-    background : #fff;
-    text-transform : none;
-    padding : 5px 40px;
-    border-radius : 2px;
-    box-shadow : none;
-    font-weight : 600;
-    height : 30px
-`
+const LoginButton = styled(Button)({
+    color : "#f85721",
+    background : "#fff",
+    textTransform : "none",
+    padding : "5px 40px",
+    borderRadius : "2px",
+    boxShadow : "none",
+    fontWeight : "600",
+    height : "35px",
+    "&:hover" : {
+        background : "#f85721",
+        color : "#fff"
+    }
+})
 
 function CustomButton() {
 

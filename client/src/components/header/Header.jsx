@@ -4,6 +4,7 @@ import {AppBar, Toolbar, Box, Typography, IconButton, Drawer, List, ListItem, st
 import { Menu } from '@mui/icons-material';
 import Search from './Search';
 import CustomButton from './CustomButton';
+import logoURL from '../../images/logo.png'
 
 import { Link } from 'react-router-dom';
 
@@ -40,7 +41,7 @@ const MenuButton = styled(IconButton)(({ theme }) => ({
 }))
 
 function Header() {
-    const logoURL = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/flipkart-plus_8d85f4.png';
+    // const logoURL = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/flipkart-plus_8d85f4.png';
     const subURL = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/plus_aef861.png';
 
     const [open, setopen] = useState(false);
@@ -64,7 +65,7 @@ function Header() {
     )
   return (
     <div>
-        <AppBar style={{background:"#2874f0", height:55}}>
+        <AppBar style={{background:"#f85721", height:55}}>
             <Toolbar style={{minHeight:55}}>
             <MenuButton color= "inherit" onClick={handleOpen}>
             <Menu/>
@@ -73,14 +74,7 @@ function Header() {
             <Drawer open = {open} onClose = {handleClose}>
                {list()}</Drawer> 
                 <BoxComponent to = '/'>
-                    <img src={logoURL} alt='logo' style={{ width:75 }}/>
-                    <Box style={{display : "flex"}}>
-                        <SubHeading>
-                            Explore&nbsp;
-                            <Box component='span' style={{color : "#ffe500"}}>Plus</Box>
-                        </SubHeading>
-                        <PlusImage src={subURL} alt='subLogo'></PlusImage>
-                    </Box>
+                    <img src={logoURL} alt='logo' style={{ width:150 }}/>
                 </BoxComponent>
                 <Search/>
                 <CustomButtonWrapper>

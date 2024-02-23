@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { Typography, Box, Menu, MenuItem } from '@mui/material'
 import LogoutIcon from '@mui/icons-material/Logout';
 import React, { useState } from 'react'
+import { deepOrange } from '@mui/material/colors';
 import Cookies from 'js-cookie';
 
 const Component = styled(Menu)`
@@ -39,7 +40,7 @@ function Profile({account, setAccount, setToken}) {
             {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
             <MenuItem onClick={handleClose}>My account</MenuItem> */}
             <MenuItem  onClick={() => {handleClose(); logout();}}>
-                <LogoutIcon style={{ fontSize:20, paddingRight:4 }} color = "primary"/>
+                <LogoutIcon style={{ fontSize:20, paddingRight:4, color : deepOrange[500] }} />
                 <Typography>Logout</Typography>
             </MenuItem>
         </Component>

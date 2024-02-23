@@ -30,16 +30,16 @@ vertical-align: baseline;
 `;
 
 const ProductDetail = ({ product }) => {
-    const fassured = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/fa_62673a.png';
+    // const fassured = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/fa_62673a.png';
     
-const adURL = 'https://rukminim1.flixcart.com/lockin/774/185/images/CCO__PP_2019-07-14.png?q=50';
+// const adURL = 'https://rukminim1.flixcart.com/lockin/774/185/images/CCO__PP_2019-07-14.png?q=50';
     const date = new Date(new Date().getTime() + (5*24*60*60*1000));
   return (
     <>
       <Typography>{product.title.longTitle}</Typography>
           <Typography style={{ marginTop: 5, color: '#878787', fontSize: 14}}>
             8 Ratings and 1 Reviews
-            <Box component = "span"> <img src={fassured} style={{ width: 77, marginLeft: 20}} alt = "img"/> </Box>
+            {/* <Box component = "span"> <img src={fassured} style={{ width: 77, marginLeft: 20}} alt = "img"/> </Box> */}
           </Typography>
           <Typography>
             <Box component="span" style={{ fontSize: 28}}>₹{product.price.cost}</Box>&nbsp;&nbsp;&nbsp;
@@ -68,16 +68,16 @@ const adURL = 'https://rukminim1.flixcart.com/lockin/774/185/images/CCO__PP_2019
                 <ColumnText>
                     <TableCell>Seller</TableCell>
                     <TableCell> 
-                    <Box component = "span"  style={{ color: '#2874f0' }}>SuperComNet</Box>
+                    <Box component = "span"  style={{ color: '#24335e' }}>SuperComNet</Box>
                     <Typography>GST invoice available</Typography>
                     <Typography>View more sellers starting from ₹{product.price.cost}</Typography>  
                         </TableCell>
                 </ColumnText>
-                <ColumnText>
+                {/* <ColumnText>
                     <TableCell colSpan={2}>
                         <img src= {adURL} style={{ width: 390 }} alt = "flipkart points" />
                     </TableCell>
-                </ColumnText>
+                </ColumnText> */}
                 <ColumnText>
                     <TableCell style={{ color: '#878787' }}>Description</TableCell>
                     <TableCell>{product.description}</TableCell>

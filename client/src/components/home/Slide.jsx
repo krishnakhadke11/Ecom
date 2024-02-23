@@ -47,7 +47,7 @@ const DealText = styled(Typography)`
 
 const ViewAllButton = styled(Button)`
   margin-left : auto;
-  background-color : #2874f0;
+  background-color : #f85721;
   border-radius : 2px;
   font-size : 13px;
   font-weight : 600;

@@ -65,8 +65,8 @@ const ActionItem = ({ product }) => {
         <Box style={{ padding: '15px 20px',  border: '1px solid #f0f0f0', width: '90%'}}>
       <Image src={product.detailUrl} alt = "product"/>
       </Box>
-      <Styledbutton variant = "contained" onClick={()=> addItemToCart()} style={{marginRight: 10, background: '#ff9f00'}}><Cart/>Add to Cart</Styledbutton>
-      <Styledbutton  variant = "contained" onClick={() => buyNow()} style={{marginRight: 10, background: '#fb541b'}}><Flash/>Buy Now</Styledbutton>
+      <Styledbutton variant = "contained" onClick={()=> addItemToCart()} style={{marginRight: 10, background: '#24335e'}}><Cart/>Add to Cart</Styledbutton>
+      <Styledbutton  variant = "contained" onClick={() => buyNow()} style={{marginRight: 10, background: '#f85721'}}><Flash/>Buy Now</Styledbutton>
     </LeftContainer>
   )
 }

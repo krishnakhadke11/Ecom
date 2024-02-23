@@ -2,7 +2,10 @@ import React from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { styled } from '@mui/material';
-import { bannerData } from '../../constants/data';
+import banner1 from '../../images/banner1.png'
+import banner2 from '../../images/banner2.png'
+import banner3 from '../../images/banner3.png'
+import banner4 from '../../images/banner4.png'
 
 const Image = styled('img')(({theme}) => ({
   width : '100%', 
@@ -33,6 +36,7 @@ const responsive = {
   };
 
 const Banner = () => {
+  const bannerData = [banner4, banner1, banner3, banner4, banner2]
   return (
     <Carousel 
     swipeable={false}
@@ -48,7 +52,7 @@ const Banner = () => {
     > 
     {
         bannerData.map(data =>(
-            <Image key={data.id} src={data.url} alt="" />
+            <Image  src={data} alt="banner" />
 
         ))
 }

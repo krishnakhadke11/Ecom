@@ -6,6 +6,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useSelector, useDispatch } from 'react-redux';
 import { getProducts } from '../../redux/actions/productActions';
 import { Link } from 'react-router-dom';
+import { deepOrange } from '@mui/material/colors';
 
 const SearchContainer = styled(Box)`
     background : #fff;
@@ -58,7 +59,7 @@ function Search() {
             value={text}
         />
         <SearchIconWrapper>
-            <SearchIcon/>
+            <SearchIcon sx={{ color: deepOrange[500] }} />
         </SearchIconWrapper>
         {
             text && 
