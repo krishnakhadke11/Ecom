@@ -1,4 +1,4 @@
-# Flipkart Clone: Your Ultimate E-commerce Solution
+# Your Ultimate E-commerce Solution
 
 Welcome to our robust e-commerce website, where we redefine the online shopping experience. We've taken a revolutionary approach, putting the user at the center of every decision, resulting in an intuitive, user-friendly application that guarantees easy navigation and understanding.
 
