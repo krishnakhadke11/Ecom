@@ -6,6 +6,9 @@ import Connection from './database/db.js';
 import DefaultData from './default.js';
 import Routes from './routes/route.js';
 import { v4 as uuid } from 'uuid';
+
+import Razorpay from "razorpay";
+
 const app = express();
 const PORT = 5000;
 
@@ -17,6 +20,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(cookieParser())
 app.use('/', Routes);
+
+export const instance = new Razorpay({
+    key_id: process.env.RAZORPAY_API_KEY,
+    key_secret: process.env.RAZORPAY_API_SECRET,
+  });
 
 export let paytmMerchantkey = process.env.PAYTM_MERCHANT_KEY;
 export let paytmParams = {};

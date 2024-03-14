@@ -62,3 +62,18 @@ export const removeFromCart = async(productId, auth_token) => {
         console.log("error while removing products : ", error.message);
     }
 }
+/* Razory Pay */
+export const razorPayCheckout = async(data) => {
+    try{
+        let response =  await axios.post(`${URL}/checkout`, data);
+        // data will contain -- > amount
+
+        return response;
+    }
+    catch(error){
+        console.log("error while calling paytm api ", error); 
+    }
+}
+// const { data: { key } } = await axios.get("http://www.localhost:4000/api/getkey")
+
+/* Razory Pay End */
